@@ -1,14 +1,12 @@
 package dmytro.bozhor;
 
 import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class ArrayListFiller implements Runnable {
 
     private List<Integer> integerList;
 
-    private final Lock lock = new ReentrantLock();
+    private final Object mutex = new Object();
 
     public ArrayListFiller(List<Integer> integerList) {
         this.integerList = integerList;
@@ -18,9 +16,9 @@ public class ArrayListFiller implements Runnable {
     public void run() {
 
         for (int i = 0; i < 5_000; i++) {
-            lock.lock();
-            integerList.add(i);
-            lock.unlock();
+            synchronized (mutex){
+                integerList.add(i);
+            }
         }
 
     }

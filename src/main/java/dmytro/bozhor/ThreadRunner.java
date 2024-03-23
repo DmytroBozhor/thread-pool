@@ -9,7 +9,7 @@ public class ThreadRunner {
         var arrayListFillerRunnable = new ArrayListFiller(integerList);
         var arrayListFillerRunnableTwo = new ArrayListFiller(integerList);
         var thread = new Thread(arrayListFillerRunnable);
-        var threadTwo = new Thread(arrayListFillerRunnableTwo);
+        var threadTwo = new Thread(arrayListFillerRunnable);
 
         thread.start();
         threadTwo.start();
