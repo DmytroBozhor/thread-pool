@@ -6,8 +6,6 @@ public class ArrayListFiller implements Runnable {
 
     private List<Integer> integerList;
 
-    private final Object mutex = new Object();
-
     public ArrayListFiller(List<Integer> integerList) {
         this.integerList = integerList;
     }
@@ -16,7 +14,7 @@ public class ArrayListFiller implements Runnable {
     public void run() {
 
         for (int i = 0; i < 5_000; i++) {
-            synchronized (mutex){
+            synchronized (integerList){
                 integerList.add(i);
             }
         }
